@@ -1,0 +1,19 @@
+<div class="container">
+    <form [formGroup]="bookForm" (ngSubmit)="addBook(bookForm)">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" formControlName="name" size="1" id="name" class="trninput"/>
+            <label for="price">Price</label>
+            <input type="number" name="price" id="price" formControlName="price" size="1" class="trninput"/>
+            <label for="author">Author</label>
+            <input type="text" name="author" formControlName="author" size="1" id="author" class="trninput"/>
+            <label for="desc">Short Description</label>
+            <input type="text" name="desc" formControlName="desc" size="1" id="desc" class="trninput"/>
+            <div class="modal-footer">
+                <button type="submit" class="savebtn btn btn-save">Add Book</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="savebtn btn btn-save" (click)="goToList()">Back to List</button>
+            </div>
+        </div>
+    </form>
+</div>
