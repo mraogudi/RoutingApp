@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import Swal from 'sweetalert2';
 import { BookService } from '../book.service';
 import { Books } from '../model/Books';
 
@@ -19,14 +18,12 @@ export class ManageBookComponent {
   }
 
   deleteBook(id: any | null) {
-    let bookValue;
-    for (let i = 0; i < this.books.length; i++) {
-      if(this.books[i].id == id)
-        bookValue = this.books[i];
-    }
-    //this.bookService.deleteBook(id);
+    this.bookService.deleteBook(id);
     this.router.navigate(['/manage']);
-    
+  }
+
+  updateBook(id: any | null) {
+    this.router.navigate(['/update/'+id]);
   }
 
 }

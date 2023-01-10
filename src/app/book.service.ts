@@ -9,38 +9,32 @@ import { Observable } from 'rxjs';
 
 export class BookService {
   bookStoreUrl: string = 'http://localhost:8082/bookstore/';
-  /*deleteBook(id: any) {
-    let book = this.getBookById(id);
-    const index: number = this.books.indexOf(book);
-    this.books.splice(index, 1);
-  }*/
+  addUrl: string = this.bookStoreUrl+'add';
+  updateUrl: string = this.bookStoreUrl+'update'
+  deleteUrl: string = this.bookStoreUrl+'delete/'
+  getUrl: string = this.bookStoreUrl+'get'
+  getAllUrl: string = this.bookStoreUrl+'all'
+  deleteBook(id: any | null): Observable<Object> {
+    return this.http.delete(this.deleteUrl+id);
+  }
   getBookById(id: any | null): Observable<Books> {
-    return this.http.get<Books>(this.bookStoreUrl+'get?id='+id);
+    return this.http.get<Books>(this.getUrl+'?id='+id);
   }
 
   addBook(name: any | null, price: any | null, author: any | null, desc: any | null): Observable<Object> {
-    const body = {'name':name, 'author':author, 'price': price, 'shortDesc': desc}
-    return this.http.post(this.bookStoreUrl+'add', body);
+    const body = {'name':name, 'author':author, 'price':price, 'shortDesc':desc}
+    return this.http.post(this.addUrl, body);
   }
 
-  /*updateBook(name: any, price: any, author: any, desc: any, id: any) {
-    for (let i = 0; i < this.books.length; i++) {
-      if(this.books[i].id == id) {
-        this.books[i].name = name;
-        this.books[i].price = price;
-        this.books[i].author = author;
-        this.books[i].shortDesc = desc;
-      }
-    }
-  }*/
+  updateBook(name: any, price: any, author: any, desc: any, id: any): Observable<Object> {
+    const body = {'id':id, 'name':name, 'author':author, 'price': price, 'shortDesc': desc}
+    return this.http.put(this.updateUrl, body);
+  }
 
   getAllBooks(): Observable<Books[]> {
-    return this.http.get<Books[]>(this.bookStoreUrl+'all');
+    return this.http.get<Books[]>(this.getAllUrl);
   }
 
-  constructor(private http:HttpClient) {
-    
-  }
+  constructor(private http:HttpClient) { }
   
 }
-

@@ -11,6 +11,8 @@ import { Books } from '../model/Books';
 })
 export class HomeComponent implements OnInit {
   public books: Books[] = [];
+  searchTerm = '';
+  term = '';
   constructor(private bookService: BookService, private route:Router) {}
   ngOnInit(): void {
     this.bookService.getAllBooks().subscribe((result: Books[]) => {

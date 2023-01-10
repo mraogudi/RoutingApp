@@ -33,7 +33,9 @@
     background-color: green;
     cursor: pointer;
   }
-  a {
+  button {
     text-decoration: none;
     color: inherit;
+    background: none;
+    border: none;
 }
