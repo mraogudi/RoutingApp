@@ -18,8 +18,9 @@ export class BookService {
     return this.http.get<Books>(this.bookStoreUrl+'get?id='+id);
   }
 
-  addBook(name: any | null, price: any | null, author: any | null, desc: any | null) {
-    
+  addBook(name: any | null, price: any | null, author: any | null, desc: any | null): Observable<Object> {
+    const body = {'name':name, 'author':author, 'price': price, 'shortDesc': desc}
+    return this.http.post(this.bookStoreUrl+'add', body);
   }
 
   /*updateBook(name: any, price: any, author: any, desc: any, id: any) {

@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class AddbookComponent {
   bookForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder, 
+  constructor(private formBuilder: FormBuilder,
     private bookService: BookService, private router: Router) {
     this.bookForm = this.formBuilder.group({
       name:'',
@@ -25,9 +25,10 @@ export class AddbookComponent {
     let price = data.controls['price'].value;
     let author = data.controls['author'].value;
     let desc = data.controls['desc'].value;
-    //this.bookService.addBook(name, price, author, desc);
-    data.reset();
-    this.router.navigate(['/home']);
+    this.bookService.addBook(name, price, author, desc).subscribe((result: Object) => {
+      data.reset();
+      this.router.navigate(['/home']);
+    });
   }
 
   goToList() {

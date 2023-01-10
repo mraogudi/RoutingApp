@@ -24,19 +24,9 @@ export class ManageBookComponent {
       if(this.books[i].id == id)
         bookValue = this.books[i];
     }
-
-    Swal.fire({
-      text: "Do you want to delete '"+bookValue?.name+"' book..!",
-      showCancelButton: true,
-      showConfirmButton: true,
-      focusConfirm: true,
-      icon: 'warning'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        //this.bookService.deleteBook(id);
-        this.router.navigate(['/manage']);
-      }
-    })
+    //this.bookService.deleteBook(id);
+    this.router.navigate(['/manage']);
+    
   }
 
 }

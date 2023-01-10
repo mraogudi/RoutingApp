@@ -11,6 +11,7 @@ import { ViewBookComponent } from './view-book/view-book.component';
 import { ManageBookComponent } from './manage-book/manage-book.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule
   ],
   providers: [BookService],
   bootstrap: [AppComponent]
