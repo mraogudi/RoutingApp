@@ -1,27 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Books, BookService } from '../book.service';
+import { BookService } from '../book.service';
+import { Books } from '../model/Books';
 
 @Component({
   selector: 'app-update-book',
   templateUrl: './update-book.component.html',
   styleUrls: ['./update-book.component.css']
 })
-export class UpdateBookComponent {
+export class UpdateBookComponent implements OnInit {
   bookForm!: FormGroup;
-  public book!: Books;
   
   constructor(private formBuilder: FormBuilder, private router: Router,
     private bookService: BookService, private route: ActivatedRoute) {
-      let id = this.route.snapshot.paramMap.get('id');
-      this.book = this.bookService.getBookById(id);
-      this.bookForm = this.formBuilder.group({
-        name:this.book.name,
-        price:this.book.price,
-        author:this.book.author,
-        desc:this.book.shortDesc
-      })
+  }
+  ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+      this.bookService.getBookById(id).subscribe((result: Books) => {
+        this.bookForm = this.formBuilder.group({
+          name:result.name,
+          price:result.price,
+          author:result.author,
+          desc:result.shortDesc
+        })
+      });
   }
 
   updateBook(data: FormGroup) {
@@ -30,9 +33,9 @@ export class UpdateBookComponent {
     let price = data.controls['price'].value;
     let author = data.controls['author'].value;
     let desc = data.controls['desc'].value;
-    this.bookService.updateBook(name, price, author, desc, id);
+    //this.bookService.updateBook(name, price, author, desc, id);
     data.reset();
-    this.router.navigate(['/home']);
+    this.router.navigate(['/manage']);
   }
 
 }

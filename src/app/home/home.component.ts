@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { OnInit } from '@angular/core';
-import { Books, BookService } from './../book.service';
+import { BookService } from './../book.service';
 import { Component } from '@angular/core';
+import { Books } from '../model/Books';
 
 @Component({
   selector: 'app-home',
@@ -9,9 +11,15 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public books: Books[] = [];
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private route:Router) {}
   ngOnInit(): void {
-    this.books = this.bookService.getAllBooks();
+    this.bookService.getAllBooks().subscribe((result: Books[]) => {
+      this.books = result;
+    });
+  }
+
+  viewPage(id: any | null) {
+    this.route.navigate(['/view/'+id]);
   }
 
 }

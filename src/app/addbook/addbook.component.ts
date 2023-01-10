@@ -25,7 +25,7 @@ export class AddbookComponent {
     let price = data.controls['price'].value;
     let author = data.controls['author'].value;
     let desc = data.controls['desc'].value;
-    this.bookService.addBook(name, price, author, desc);
+    //this.bookService.addBook(name, price, author, desc);
     data.reset();
     this.router.navigate(['/home']);
   }

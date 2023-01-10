@@ -36,7 +36,8 @@
     cursor: pointer;
   }
 
-  a {
+  button {
     text-decoration: none;
     color: inherit;
+    border: none;
 }

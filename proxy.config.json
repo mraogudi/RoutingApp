@@ -1,0 +1,8 @@
+{
+    "/bookstore/*":{
+        "target":"http://localhost:8082",
+        "secure": false,
+        "changeOrigin":false,
+        "logLevel":"debug"
+    }
+}

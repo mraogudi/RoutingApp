@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
-import { Books, BookService } from '../book.service';
+import { BookService } from '../book.service';
+import { Books } from '../model/Books';
 
 @Component({
   selector: 'app-manage-book',
@@ -12,7 +13,9 @@ export class ManageBookComponent {
   public books: Books[] = [];
   constructor(private bookService: BookService, private router: Router, private route: ActivatedRoute) {}
   ngOnInit(): void {
-    this.books = this.bookService.getAllBooks();
+    this.bookService.getAllBooks().subscribe((result: Books[]) => {
+      this.books = result;
+    });
   }
 
   deleteBook(id: any | null) {
@@ -30,7 +33,7 @@ export class ManageBookComponent {
       icon: 'warning'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.bookService.deleteBook(id);
+        //this.bookService.deleteBook(id);
         this.router.navigate(['/manage']);
       }
     })
