@@ -11,6 +11,7 @@ import { ViewBookComponent } from './view-book/view-book.component';
 import { ManageBookComponent } from './manage-book/manage-book.component';
 import { UpdateBookComponent } from './update-book/update-book.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AddbookComponent,
     ViewBookComponent,
     ManageBookComponent,
-    UpdateBookComponent
+    UpdateBookComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
