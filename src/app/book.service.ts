@@ -26,9 +26,9 @@ export class BookService {
     return this.http.post(this.addUrl, body);
   }
 
-  updateBook(name: any, price: any, author: any, desc: any, id: any): Observable<Object> {
+  updateBook(name: string | null, price: string | null, author: string | null, desc: string | null, id: number | null): Observable<Object> {
     const body = {'id':id, 'name':name, 'author':author, 'price': price, 'shortDesc': desc}
-    return this.http.post(this.addUrl, body);
+    return this.http.put(this.addUrl, body);
   }
 
   getAllBooks(): Observable<Books[]> {

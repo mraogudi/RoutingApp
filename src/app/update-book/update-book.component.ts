@@ -41,8 +41,8 @@ export class UpdateBookComponent implements OnInit {
     let author = data.controls['author'].value;
     let desc = data.controls['desc'].value;
     this.bookService.updateBook(name, price, author, desc, this.book.id);
-    data.reset();
-    this.router.navigate(['/manage']);
+    //data.reset();
+    //this.router.navigate(['/manage']);
   }
 
 }
